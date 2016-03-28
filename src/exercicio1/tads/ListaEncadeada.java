@@ -6,13 +6,13 @@ public class ListaEncadeada {
 	private Caixa ultima;
 	
 	public ListaEncadeada(){
-		System.out.println("Criando lista vazia...");
+		System.out.println("Criando lista vazia");
 		primeira = null;
 		ultima = null;
 	};
 	
 	public void inserirNoTopo(int valor){
-		System.out.println("Inserindo Elemento no Topo...");
+		System.out.println("função inserir elemento "+valor+" no topo");
 		Caixa caixa = new Caixa(null, valor); //Criando nova célula
 		if(this.primeira==null){
 			this.primeira = caixa;
@@ -24,33 +24,87 @@ public class ListaEncadeada {
 		
 	};
 	public void imprimirLista(){
-		System.out.println("Imprimindo Lista...");
+		System.out.print("função imprime: ");
 		Caixa atual = primeira;
 		if(atual==null){ //Lista Vazia
-			System.out.println("::Lista Vazia::");
+			System.out.print("");
 		}else{
-			System.out.print("::[ ");
 			do{
 				System.out.print(atual.getConteudo()+" ");
 				atual = atual.getProxima();
 			}while(atual!=null);
-			System.out.print("]::\n");
+		}
+		System.out.println();
+	};
+	public void imprimirListaComRecursao(Caixa atual){
+		System.out.print("função imprime recursiva original: ");
+		imprimirComRecursao(atual);
+		System.out.println("");
+	}
+	public void imprimirComRecursao(Caixa atual){	
+		if(atual!=null){
+			System.out.print(atual.getConteudo() + " ");
+		    imprimirComRecursao(atual.getProxima());
 		}
 	};
-	public Caixa imprimirListaComRecursao(Caixa atual){
-		
+	public void imprimirListaOrdemReversa(Caixa atual){
+		System.out.print("função imprime recursiva invertida: ");
+		imprimirOrdemReversa(atual);
+		System.out.println("");
+	};
+	public void imprimirOrdemReversa(Caixa atual){
+		if(atual!=null){
+			imprimirOrdemReversa(atual.getProxima());
+			System.out.print(atual.getConteudo()+ " ");
+		}
+	};
+	public int checkListaVazia(Caixa atual){
 		if(atual==null){
-			return null;
+			System.out.println("função verifica lista vazia: " + 1 + " (vazia)");
+			return 1;
 		}else{
-			System.out.println(atual.getConteudo());
-		    return imprimirListaComRecursao(atual.getProxima());
+			System.out.println("função verifica lista vazia: " + 0 + " (não vazia)");
+			return 0;
 		}
 	};
-	public void imprimirListaOrdemReversa(){};
-	public void checkListaVazia(){};
-	public void buscarElemento(){};
-	public void removerElemento(){};
-	public void removerElementoComRecursao(){};
+	public Caixa buscarElemento(int elemento){
+		System.out.print("função buscar elemento: ");
+		for(Caixa atual=primeira;atual!=null;atual=atual.getProxima()){
+			if(atual.getConteudo()==elemento){
+				return atual;
+			}
+		}
+		return null;
+	};
+	public Caixa removerElemento(int elemento){
+		System.out.print("função remover elemento "+elemento+": ");
+		Caixa anterior =  null; /* ponteiro para elemento anterior */
+		Caixa atual = primeira;     /* ponteiro para percorrer a lista */
+		/* procura elemento na lista, guardando anterior */
+		while(atual!=null && atual.getConteudo()!=elemento){
+			anterior = atual;
+			atual = atual.getProxima();
+		}
+		/* verifica se achou elemento */
+		if(atual==null){
+			System.out.print("elemento não encontrado!\n");
+			return primeira; /* não achou: retorna lista original */
+		}
+		/* achou: retira */
+		if(anterior==null){
+			primeira = atual.getProxima();/* retira elemento do inicio */
+		}else{
+			anterior.setProxima(atual.getProxima()); 
+		}
+		atual = null;
+		System.out.print("elemento removido com sucesso!\n");
+		return primeira;
+	};
+	public void removerElementoComRecursao(int elemento){
+		System.out.print("função remover elemento com recursão"+elemento+": ");
+		
+		
+	};
 	public void liberarLista(){}
 
 	public Caixa getPrimeira() {
