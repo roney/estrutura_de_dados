@@ -1,53 +1,53 @@
 package exercicio1.tads;
 
-public class ListaEncadeadaOrdenada {
-
+public class ListaEncadeadaCircular {
+	
 	private Caixa primeira;
 	
-	
-	public ListaEncadeadaOrdenada(){
-		System.out.println("criar lista vazia");
+	public ListaEncadeadaCircular(){
+		System.out.println("Criando lista vazia");
 		primeira = null;
 	};
 	
-	public void inserirElemento(int valor){
+	public void inserir(int valor){
 		System.out.println("função inserir elemento "+valor);
-		Caixa anterior = null;  /* ponteiro para elemento anterior */
+
+		Caixa novo = new Caixa(null, valor); //Criando nova caixa
+		if(primeira==null){
+			primeira = novo;
+			primeira.setProxima(primeira);
+			return;
+		}
 		Caixa atual = primeira; /* ponteiro para percorrer a lista */
-		/* procura posiÃ§Ã£o para inserÃ§Ã£o */
-		while(atual!=null && atual.getConteudo()<valor){
+		Caixa anterior = primeira;
+		while(atual.getProxima()!=primeira){
 			anterior = atual;
 			atual = atual.getProxima();
 		}
-		/* cria novo elemento */
-		Caixa novo = new Caixa(null, valor); //Criando nova cÃ©lula
-		/* encadeia elemento */
-		if(anterior==null){
-			novo.setProxima(primeira);
-			primeira = novo;
-		}else{
-			novo.setProxima(anterior.getProxima());
-			anterior.setProxima(novo);
-		}
+		atual.setProxima(novo);
+		novo.setProxima(primeira);
+		
 	};
 	public void imprimirLista(){
 		System.out.print("função imprime: ");
 		Caixa atual = primeira;
-		while(atual!=null){
+		do{
 			System.out.print(atual.getConteudo()+" ");
 			atual = atual.getProxima();
-		};
+		}while(atual!=primeira);
 		System.out.println();
 	};
 	public void imprimirListaComRecursao(Caixa atual){
-		System.out.print("função imprime recursiva: ");
+		System.out.print("função imprime com recursão: ");
 		imprimirComRecursao(atual);
 		System.out.println("");
 	}
 	public void imprimirComRecursao(Caixa atual){	
 		if(atual!=null){
 			System.out.print(atual.getConteudo() + " ");
-		    imprimirComRecursao(atual.getProxima());
+			if(atual.getProxima()!=primeira){
+				imprimirComRecursao(atual.getProxima());
+			}		    
 		}
 	};
 	public void imprimirListaOrdemReversa(Caixa atual){
@@ -72,42 +72,68 @@ public class ListaEncadeadaOrdenada {
 	};
 	public Caixa buscarElemento(int elemento){
 		System.out.print("função buscar elemento: ");
-		Caixa atual=primeira;
-		while(atual!=null&&atual.getConteudo()<=elemento){
-			if(atual.getConteudo()==elemento){
-				return atual;
-			}
-			atual = atual.getProxima();
+		if(primeira==null){
+			System.out.print("elemento não encontrado!\n");
+			return null;
 		}
+		if(primeira.getConteudo()==elemento){
+			System.out.print("elemento encontrado!\n");
+			return primeira;
+		}
+		Caixa atual=primeira;
+		while(atual.getProxima()!=primeira){
+			atual = atual.getProxima();
+			if(atual.getConteudo()==elemento){
+				System.out.print("elemento encontrado!\n");
+				return primeira;
+			}
+		}
+		System.out.print("elemento não encontrado!\n");
 		return null;
 	};
-	public Caixa removerElemento(int elemento){
+	public Caixa removerElemento(Caixa atual,int elemento){
 		System.out.print("função remover elemento "+elemento+": ");
-		Caixa anterior =  null; /* ponteiro para elemento anterior */
-		Caixa atual = primeira;     /* ponteiro para percorrer a lista */
-		/* procura elemento na lista, guardando anterior */
-		while(atual!=null && (atual.getConteudo()!=elemento || atual.getConteudo()<elemento)){
+		Caixa anterior = primeira; 
+		if(atual==null){
+			System.out.print("elemento não encontrado");
+			return primeira; 
+		}
+		do{
 			anterior = atual;
 			atual = atual.getProxima();
-		}
-		/* verifica se achou elemento */
-		if(atual==null || atual.getConteudo()!=elemento){
-			System.out.print("elemento não encontrado!\n");
-			return primeira; /* não achou: retorna lista original */
-		}
-		/* achou: retira */
-		if(anterior==null){
-			primeira = atual.getProxima();/* retira elemento do inicio */
+		}while(atual!=primeira);
+		
+		if(atual.getConteudo()==elemento){
+			anterior.setProxima(atual.getProxima());
+			primeira = atual.getProxima();
+			atual = null;
+			System.out.print("elemento removido com sucesso!\n");
+			return primeira;
 		}else{
-
-			anterior.setProxima(atual.getProxima()); 
+			while(atual.getProxima()!=primeira){
+				if(atual.getConteudo()==elemento){
+					anterior.setProxima(atual.getProxima());
+					System.out.print("elemento removido com sucesso!\n");
+					return primeira;
+				}
+				anterior = atual;
+				atual = atual.getProxima();
+			}
+			if(atual.getConteudo()==elemento){
+				anterior.setProxima(atual.getProxima());
+				primeira = atual.getProxima();
+				atual = null;
+				System.out.print("elemento removido com sucesso!\n");
+				return primeira;
+			}
 		}
-		atual = null;
-		System.out.print("elemento removido com sucesso!\n");
-		return primeira;
+		
+		System.out.print("elemento não encontrado!\n");
+		return primeira; 
+		
 	};
 	public Caixa removerElementoComRecursao(Caixa atual, Caixa anterior, int elemento){
-		if(atual==null || atual.getConteudo()>elemento){ //não encontrou
+		if(atual==null){ //não encontrou
 			return primeira;
 		}
 		if(atual.getConteudo()==elemento){
@@ -131,21 +157,6 @@ public class ListaEncadeadaOrdenada {
 		}
 		primeira =null;
 	}
-	
-	public boolean compararListas(Caixa lista, Caixa lista2){
-		System.out.print("função comparar listas: ");
-		for(Caixa atual = lista;atual!=null;atual=atual.getProxima()){
-			if(lista2==null || atual.getConteudo()!=lista2.getConteudo()){
-				return false;
-			}
-			lista2 = lista2.getProxima();
-		}		
-		if(lista2==null){
-			return true;
-		}
-		
-		return false;
-	}
 
 	public Caixa getPrimeira() {
 		return primeira;
@@ -154,5 +165,6 @@ public class ListaEncadeadaOrdenada {
 	public void setPrimeira(Caixa primeira) {
 		this.primeira = primeira;
 	}
-
+	
+	
 }

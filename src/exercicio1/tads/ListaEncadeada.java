@@ -10,8 +10,8 @@ public class ListaEncadeada {
 	};
 	
 	public void inserirNoTopo(int valor){
-		System.out.println("fun√ß√£o inserir elemento "+valor+" no topo");
-		Caixa caixa = new Caixa(null, valor); //Criando nova c√©lula
+		System.out.println("funÁ„o inserir elemento "+valor+" no topo");
+		Caixa caixa = new Caixa(null, valor); //Criando nova cÈlula
 		if(this.primeira==null){
 			this.primeira = caixa;
 		}else{
@@ -21,20 +21,16 @@ public class ListaEncadeada {
 		
 	};
 	public void imprimirLista(){
-		System.out.print("fun√ß√£o imprime: ");
+		System.out.print("funÁ„o imprime: ");
 		Caixa atual = primeira;
-		if(atual==null){ //Lista Vazia
-			System.out.print("");
-		}else{
-			do{
-				System.out.print(atual.getConteudo()+" ");
-				atual = atual.getProxima();
-			}while(atual!=null);
-		}
+		while(atual!=null){
+			System.out.print(atual.getConteudo()+" ");
+			atual = atual.getProxima();
+		};
 		System.out.println();
 	};
 	public void imprimirListaComRecursao(Caixa atual){
-		System.out.print("fun√ß√£o imprime recursiva original: ");
+		System.out.print("funÁ„o imprime recursiva original: ");
 		imprimirComRecursao(atual);
 		System.out.println("");
 	}
@@ -45,7 +41,7 @@ public class ListaEncadeada {
 		}
 	};
 	public void imprimirListaOrdemReversa(Caixa atual){
-		System.out.print("fun√ß√£o imprime recursiva invertida: ");
+		System.out.print("funÁ„o imprime recursiva invertida: ");
 		imprimirOrdemReversa(atual);
 		System.out.println("");
 	};
@@ -57,15 +53,15 @@ public class ListaEncadeada {
 	};
 	public int checkListaVazia(Caixa atual){
 		if(atual==null){
-			System.out.println("fun√ß√£o verifica lista vazia: " + 1 + " (vazia)");
+			System.out.println("funÁ„o verifica lista vazia: " + 1 + " (vazia)");
 			return 1;
 		}else{
-			System.out.println("fun√ß√£o verifica lista vazia: " + 0 + " (n√£o vazia)");
+			System.out.println("funÁ„o verifica lista vazia: " + 0 + " (n„o vazia)");
 			return 0;
 		}
 	};
 	public Caixa buscarElemento(int elemento){
-		System.out.print("fun√ß√£o buscar elemento: ");
+		System.out.print("funÁ„o buscar elemento: ");
 		for(Caixa atual=primeira;atual!=null;atual=atual.getProxima()){
 			if(atual.getConteudo()==elemento){
 				return atual;
@@ -74,7 +70,7 @@ public class ListaEncadeada {
 		return null;
 	};
 	public Caixa removerElemento(int elemento){
-		System.out.print("fun√ß√£o remover elemento "+elemento+": ");
+		System.out.print("funÁ„o remover elemento "+elemento+": ");
 		Caixa anterior =  null; /* ponteiro para elemento anterior */
 		Caixa atual = primeira;     /* ponteiro para percorrer a lista */
 		/* procura elemento na lista, guardando anterior */
@@ -84,8 +80,8 @@ public class ListaEncadeada {
 		}
 		/* verifica se achou elemento */
 		if(atual==null){
-			System.out.print("elemento n√£o encontrado!\n");
-			return primeira; /* n√£o achou: retorna lista original */
+			System.out.print("elemento n„o encontrado!\n");
+			return primeira; /* n„o achou: retorna lista original */
 		}
 		/* achou: retira */
 		if(anterior==null){
@@ -98,7 +94,7 @@ public class ListaEncadeada {
 		return primeira;
 	};
 	public Caixa removerElementoComRecursao(Caixa atual, Caixa anterior, int elemento){
-		if(atual==null){ //N√£o encontrou
+		if(atual==null){ //n„o encontrou
 			return primeira;
 		}
 		if(atual.getConteudo()==elemento){
@@ -116,7 +112,7 @@ public class ListaEncadeada {
 		
 	};
 	public void liberarLista(){
-		System.out.println("fun√ß√£o libera lista");
+		System.out.println("funÁ„o libera lista");
 		while(primeira!=null){
 			primeira = primeira.getProxima();
 		}
