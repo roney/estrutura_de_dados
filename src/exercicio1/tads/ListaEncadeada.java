@@ -3,20 +3,17 @@ package exercicio1.tads;
 public class ListaEncadeada {
 	
 	private Caixa primeira;
-	private Caixa ultima;
 	
 	public ListaEncadeada(){
 		System.out.println("Criando lista vazia");
 		primeira = null;
-		ultima = null;
 	};
 	
 	public void inserirNoTopo(int valor){
-		System.out.println("funÁ„o inserir elemento "+valor+" no topo");
-		Caixa caixa = new Caixa(null, valor); //Criando nova cÈlula
+		System.out.println("fun√ß√£o inserir elemento "+valor+" no topo");
+		Caixa caixa = new Caixa(null, valor); //Criando nova c√©lula
 		if(this.primeira==null){
 			this.primeira = caixa;
-			this.ultima = this.primeira;
 		}else{
 			caixa.setProxima(this.primeira);
 			this.primeira = caixa;
@@ -24,7 +21,7 @@ public class ListaEncadeada {
 		
 	};
 	public void imprimirLista(){
-		System.out.print("funÁ„o imprime: ");
+		System.out.print("fun√ß√£o imprime: ");
 		Caixa atual = primeira;
 		if(atual==null){ //Lista Vazia
 			System.out.print("");
@@ -37,7 +34,7 @@ public class ListaEncadeada {
 		System.out.println();
 	};
 	public void imprimirListaComRecursao(Caixa atual){
-		System.out.print("funÁ„o imprime recursiva original: ");
+		System.out.print("fun√ß√£o imprime recursiva original: ");
 		imprimirComRecursao(atual);
 		System.out.println("");
 	}
@@ -48,7 +45,7 @@ public class ListaEncadeada {
 		}
 	};
 	public void imprimirListaOrdemReversa(Caixa atual){
-		System.out.print("funÁ„o imprime recursiva invertida: ");
+		System.out.print("fun√ß√£o imprime recursiva invertida: ");
 		imprimirOrdemReversa(atual);
 		System.out.println("");
 	};
@@ -60,15 +57,15 @@ public class ListaEncadeada {
 	};
 	public int checkListaVazia(Caixa atual){
 		if(atual==null){
-			System.out.println("funÁ„o verifica lista vazia: " + 1 + " (vazia)");
+			System.out.println("fun√ß√£o verifica lista vazia: " + 1 + " (vazia)");
 			return 1;
 		}else{
-			System.out.println("funÁ„o verifica lista vazia: " + 0 + " (n„o vazia)");
+			System.out.println("fun√ß√£o verifica lista vazia: " + 0 + " (n√£o vazia)");
 			return 0;
 		}
 	};
 	public Caixa buscarElemento(int elemento){
-		System.out.print("funÁ„o buscar elemento: ");
+		System.out.print("fun√ß√£o buscar elemento: ");
 		for(Caixa atual=primeira;atual!=null;atual=atual.getProxima()){
 			if(atual.getConteudo()==elemento){
 				return atual;
@@ -77,7 +74,7 @@ public class ListaEncadeada {
 		return null;
 	};
 	public Caixa removerElemento(int elemento){
-		System.out.print("funÁ„o remover elemento "+elemento+": ");
+		System.out.print("fun√ß√£o remover elemento "+elemento+": ");
 		Caixa anterior =  null; /* ponteiro para elemento anterior */
 		Caixa atual = primeira;     /* ponteiro para percorrer a lista */
 		/* procura elemento na lista, guardando anterior */
@@ -87,8 +84,8 @@ public class ListaEncadeada {
 		}
 		/* verifica se achou elemento */
 		if(atual==null){
-			System.out.print("elemento n„o encontrado!\n");
-			return primeira; /* n„o achou: retorna lista original */
+			System.out.print("elemento n√£o encontrado!\n");
+			return primeira; /* n√£o achou: retorna lista original */
 		}
 		/* achou: retira */
 		if(anterior==null){
@@ -100,13 +97,26 @@ public class ListaEncadeada {
 		System.out.print("elemento removido com sucesso!\n");
 		return primeira;
 	};
-	public void removerElementoComRecursao(int elemento){
-		System.out.print("funÁ„o remover elemento com recurs„o"+elemento+": ");
-		
+	public Caixa removerElementoComRecursao(Caixa atual, Caixa anterior, int elemento){
+		if(atual==null){ //N√£o encontrou
+			return primeira;
+		}
+		if(atual.getConteudo()==elemento){
+			if(anterior==null){
+				primeira = atual.getProxima(); //Primeiro Elemento
+			}else{
+				anterior.setProxima(atual.getProxima()); 
+				atual = null;
+				return primeira;
+			}
+		}else{
+			removerElementoComRecursao(atual.getProxima(),atual, elemento);
+		}
+		return primeira;
 		
 	};
 	public void liberarLista(){
-		System.out.println("funÁ„o libera lista");
+		System.out.println("fun√ß√£o libera lista");
 		while(primeira!=null){
 			primeira = primeira.getProxima();
 		}
@@ -120,15 +130,6 @@ public class ListaEncadeada {
 	public void setPrimeira(Caixa primeira) {
 		this.primeira = primeira;
 	}
-
-	public Caixa getUltima() {
-		return ultima;
-	}
-
-	public void setUltima(Caixa ultima) {
-		this.ultima = ultima;
-	};
-	
 	
 	
 }
