@@ -105,7 +105,13 @@ public class ListaEncadeada {
 		
 		
 	};
-	public void liberarLista(){}
+	public void liberarLista(){
+		System.out.println("função libera lista");
+		while(primeira!=null){
+			primeira = primeira.getProxima();
+		}
+		primeira =null;
+	}
 
 	public Caixa getPrimeira() {
 		return primeira;

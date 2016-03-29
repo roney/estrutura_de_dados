@@ -37,8 +37,10 @@ public class TesteListaEncadeada {
 		lista.imprimirLista();
 		
 //		9. Remover um determinado elemento da lista usando recursão;
-		lista.removerElementoComRecursao();
-//		10. Liberar a lista;
+		//lista.removerElementoComRecursao();
 		
+//		10. Liberar a lista;
+		lista.liberarLista();
+		lista.imprimirLista();
 	  }
 }
