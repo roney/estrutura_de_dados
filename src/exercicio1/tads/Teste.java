@@ -3,37 +3,70 @@ package exercicio1.tads;
 public class Teste {
 
 	public static void main(String[] args) {
-		testeListaEncadeadaCircular();
+		testeListaEncadeadaCircularDuplamenteEncadeada();
 	 }
-	
+	private static void testeListaEncadeadaCircularDuplamenteEncadeada(){
+		  
+  
+		//Criar uma lista vazia;
+		ListaCircularDuplamenteEncadeada lista = new ListaCircularDuplamenteEncadeada();
+		
+		//Inserir elemento;
+		lista.inserir(10);
+		lista.inserir(20);		
+		lista.inserir(30);
+		lista.inserir(40);
+		//Imprimir os valores armazenados na lista;
+		lista.imprimirLista();
+		//Imprimir os valores armazenados na lista usando recursÃ£o;
+		lista.imprimirListaComRecursao(lista.getPrimeira());
+		//Verificar se a lista estÃ¡ vazia (retorna 1 se vazia ou 0 se nÃ£o vazia);
+		lista.checkListaVazia(lista.getPrimeira());
+		//Recuperar/Buscar um determinado elemento da lista;
+		lista.buscarElemento(20);
+		lista.imprimirLista();
+		//Remover um determinado elemento da lista;
+		//lista.removerElemento(lista.getPrimeira(), 10);
+		lista.imprimirLista();
+		//Remover um determinado elemento da lista usando recursÃ£o;
+		System.out.print("funÃ§Ã£o remover elemento "+30+": ");
+		lista.removerElementoComRecursao(lista.getPrimeira().getProxima(), 10);
+		lista.imprimirLista();
+		//Liberar a lista;
+	}
 	private static void testeListaEncadeadaCircular(){
 //		1. Criar uma lista vazia;
 		ListaEncadeadaCircular lista = new ListaEncadeadaCircular();
 		
 //		2. Inserir elemento;
 		lista.inserir(10);
-		//lista.inserir(11);
-		//lista.inserir(12);
+		lista.inserir(11);
+		lista.inserir(12);
 		
 //		3. Imprimir os valores armazenados na lista;
 		lista.imprimirLista();
 		
-//		4. Imprimir os valores armazenados na lista usando recursão;
+//		4. Imprimir os valores armazenados na lista usando recursï¿½o;
 		lista.imprimirListaComRecursao(lista.getPrimeira());
 		
-//		5. Verificar se a lista está vazia (retorna 1 se vazia ou 0 se não vazia);
+//		5. Verificar se a lista estï¿½ vazia (retorna 1 se vazia ou 0 se nï¿½o vazia);
 		lista.checkListaVazia(lista.getPrimeira());
 		
 //		6. Recuperar/Buscar um determinado elemento da lista;
 		//lista.buscarElemento(10);
 		//lista.buscarElemento(50);
 //		7. Remover um determinado elemento da lista;
-		lista.removerElemento(lista.getPrimeira(),10);
+		//lista.removerElemento(lista.getPrimeira(),10);
 		lista.imprimirLista();
 
-//		8. Remover um determinado elemento da lista usando recursão;
-		//lista.removerElementoComRecursao(atual, anterior, elemento);
+//		8. Remover um determinado elemento da lista usando recursï¿½o;
+		lista.removerElementoComRecursao(lista.getPrimeira().getProxima(),lista.getPrimeira(), 11);
+		lista.imprimirLista();
 //		9. Liberar a lista;
+		System.out.println("funÃ§Ã£o libera lista");
+
+		lista.liberarLista(lista.getPrimeira());
+		lista.imprimirLista();
 	}
 	
 	private static void testeListaDuplamenteEncadeada(){
@@ -49,13 +82,13 @@ public class Teste {
 //		3. Imprimir os valores armazenados na lista;
 		lista.imprimirLista();
 		
-//		4. Imprimir os valores armazenados na lista usando recursão;
+//		4. Imprimir os valores armazenados na lista usando recursï¿½o;
 		lista.imprimirListaComRecursao(lista.getPrimeira());
 		
 //		5. Imprimir os valores armazenados na lista em ordem reversa;
 		lista.imprimirListaOrdemReversa(lista.getPrimeira());
 		
-//		6. Verificar se a lista está vazia (retorna 1 se vazia ou 0 se não vazia);
+//		6. Verificar se a lista estï¿½ vazia (retorna 1 se vazia ou 0 se nï¿½o vazia);
 		lista.checkListaVazia(lista.getPrimeira());
 		
 //		7. Recuperar/Buscar um determinado elemento da lista;
@@ -65,7 +98,7 @@ public class Teste {
 		lista.removerElemento(13);
 		lista.imprimirLista();
 		
-//		9. Remover um determinado elemento da lista usando recursão;
+//		9. Remover um determinado elemento da lista usando recursï¿½o;
 		lista.removerElementoComRecursao(lista.getPrimeira(), 11);
 		lista.imprimirLista();
 		
@@ -76,7 +109,7 @@ public class Teste {
 		lista2.inserir(10);
 		lista2.inserir(12);
 		
-//		11. Verificar se duas listas são iguais;
+//		11. Verificar se duas listas sï¿½o iguais;
 		lista.compararListas(lista2.getPrimeira());
 	}
 	
@@ -94,32 +127,32 @@ public class Teste {
 		//3.   Imprimir os valores armazenados na lista;
 		lista.imprimirLista();
 		
-		//4.   Imprimir os valores armazenados na lista usando recursão;
+		//4.   Imprimir os valores armazenados na lista usando recursï¿½o;
 		lista.imprimirListaComRecursao(lista.getPrimeira());
 	
 		//5.   Imprimir os valores armazenados na lista em ordem reversa;
 		lista.imprimirListaOrdemReversa(lista.getPrimeira());
 		
-		//6.   Verificar se a lista está vazia (retorna 1 se vazia ou 0 se não vazia);
+		//6.   Verificar se a lista estï¿½ vazia (retorna 1 se vazia ou 0 se nï¿½o vazia);
 		lista.checkListaVazia(lista.getPrimeira());
 		
 		//7.   Recuperar/Buscar um determinado elemento da lista;
 		if(lista.buscarElemento(15)==null){
-			System.out.println("elemento não encontrado!");
+			System.out.println("elemento nï¿½o encontrado!");
 		}else{
 			System.out.println("elemento encontrado!");
 		}
 		//8.   Remover um determinado elemento da lista;
 		lista.removerElemento(10);
 		lista.imprimirLista();
-		//9.   Remover um determinado elemento da lista usando recursão;
-		System.out.print("função remover elemento com recusão");
+		//9.   Remover um determinado elemento da lista usando recursï¿½o;
+		System.out.print("funÃ§Ã£o remover elemento com recusï¿½o");
 		lista.removerElementoComRecursao(lista.getPrimeira(), null, 13);
 		System.out.println("");
 		lista.imprimirLista();
 		//10.   Liberar a lista;
 		//lista.liberarLista();
-		//11.   Verificar se duas listas são iguais;
+		//11.   Verificar se duas listas sï¿½o iguais;
 		ListaEncadeadaOrdenada lista2 = new ListaEncadeadaOrdenada();
 		lista2.inserirElemento(10);
 		//lista2.inserirElemento(11);
@@ -159,7 +192,7 @@ public class Teste {
 		
 //		7. Recuperar/Buscar um determinado elemento da lista;
 		if(lista.buscarElemento(1)==null){
-			System.out.println("elemento não encontrado!");
+			System.out.println("elemento nï¿½o encontrado!");
 		}else{
 			System.out.println("elemento encontrado!");
 		}
@@ -168,8 +201,8 @@ public class Teste {
 		//lista.removerElemento(10);
 		lista.imprimirLista();
 		
-//		9. Remover um determinado elemento da lista usando recursão;
-		System.out.print("função remover elemento com recursão: ");
+//		9. Remover um determinado elemento da lista usando recursÃ£o;
+		System.out.print("funÃ§Ã£o remover elemento com recursÃ£o: ");
 		lista.removerElementoComRecursao(lista.getPrimeira(),null, 50);
 		System.out.println();
 //		10. Liberar a lista;

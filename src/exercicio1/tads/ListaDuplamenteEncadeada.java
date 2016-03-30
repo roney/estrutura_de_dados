@@ -10,7 +10,7 @@ public class ListaDuplamenteEncadeada {
 	};
 	
 	public void inserir(int valor){
-		System.out.println("função inserir elemento "+valor);
+		System.out.println("funÃ§Ã£o inserir elemento "+valor);
 		CaixaEncadeada novo = new CaixaEncadeada(null, null, valor); //Criando nova caixa
 		if(this.primeira==null){
 			this.primeira = novo;
@@ -25,7 +25,7 @@ public class ListaDuplamenteEncadeada {
 		
 	};
 	public void imprimirLista(){
-		System.out.print("função imprime: ");
+		System.out.print("funÃ§Ã£o imprime: ");
 		CaixaEncadeada atual = primeira;
 		while(atual!=null){
 			System.out.print(atual.getConteudo()+" ");
@@ -34,7 +34,7 @@ public class ListaDuplamenteEncadeada {
 		System.out.println();
 	};
 	public void imprimirListaComRecursao(CaixaEncadeada atual){
-		System.out.print("função imprime recursiva: ");
+		System.out.print("funÃ§Ã£o imprime recursiva: ");
 		imprimirComRecursao(atual);
 		System.out.println("");
 	}
@@ -46,7 +46,7 @@ public class ListaDuplamenteEncadeada {
 	};
 
 	public void imprimirListaOrdemReversa(CaixaEncadeada atual){
-		System.out.print("função imprime recursiva invertida: ");
+		System.out.print("funÃ§Ã£o imprime recursiva invertida: ");
 		CaixaEncadeada ultimo = null;
 		if(atual==null){ //Lista Vazia
 			System.out.print("");
@@ -65,15 +65,15 @@ public class ListaDuplamenteEncadeada {
 	};
 	public int checkListaVazia(CaixaEncadeada atual){
 		if(atual==null){
-			System.out.println("função verifica lista vazia: " + 1 + " (vazia)");
+			System.out.println("funÃ§Ã£o verifica lista vazia: " + 1 + " (vazia)");
 			return 1;
 		}else{
-			System.out.println("função verifica lista vazia: " + 0 + " (não vazia)");
+			System.out.println("funÃ§Ã£o verifica lista vazia: " + 0 + " (nï¿½o vazia)");
 			return 0;
 		}
 	};
 	public CaixaEncadeada buscarElemento(int elemento){
-		System.out.print("função buscar elemento("+elemento+"): ");
+		System.out.print("funÃ§Ã£o buscar elemento("+elemento+"): ");
 		CaixaEncadeada atual = primeira;
 		while(atual!=null){
 			if(atual.getConteudo()==elemento){
@@ -82,11 +82,11 @@ public class ListaDuplamenteEncadeada {
 			}
 			atual = atual.getProxima();
 		}
-		System.out.print("elemento não encontrado!\n");
+		System.out.print("elemento nï¿½o encontrado!\n");
 		return null;
 	};
 	public CaixaEncadeada removerElemento(int elemento){
-		System.out.print("função remover elemento("+elemento+"): ");
+		System.out.print("funÃ§Ã£o remover elemento("+elemento+"): ");
 		CaixaEncadeada atual = primeira;     /* ponteiro para percorrer a lista */
 		/* procura elemento na lista, guardando anterior */
 		while(atual!=null && atual.getConteudo()!=elemento){
@@ -94,8 +94,8 @@ public class ListaDuplamenteEncadeada {
 		}
 		/* verifica se achou elemento */
 		if(atual==null){
-			System.out.print("elemento não encontrado!\n");
-			return primeira; /* não achou: retorna lista original */
+			System.out.print("elemento nï¿½o encontrado!\n");
+			return primeira; /* nï¿½o achou: retorna lista original */
 		}
 		/* achou: retira */
 		if(atual.getAnterior()==null){
@@ -112,7 +112,7 @@ public class ListaDuplamenteEncadeada {
 		return primeira;
 	};
 	public CaixaEncadeada removerElementoComRecursao(CaixaEncadeada atual, int elemento){
-		if(atual==null){ //não encontrou
+		if(atual==null){ //nï¿½o encontrou
 			return primeira;
 		}
 		if(atual.getConteudo()==elemento){
@@ -136,7 +136,7 @@ public class ListaDuplamenteEncadeada {
 		
 	};
 	public void liberarLista(){
-		System.out.println("função libera lista");
+		System.out.println("funÃ§Ã£o libera lista");
 		CaixaEncadeada atual = null;
 		while(primeira!=null){
 			atual = primeira;
@@ -147,7 +147,7 @@ public class ListaDuplamenteEncadeada {
 	}
 	
 	public boolean compararListas(CaixaEncadeada lista2){
-		System.out.print("função comparar listas: ");
+		System.out.print("funÃ§Ã£o comparar listas: ");
 		for(CaixaEncadeada atual = primeira;atual!=null;atual=atual.getProxima()){
 			if(lista2==null || atual.getConteudo()!=lista2.getConteudo()){
 				System.out.print("diferentes\n");

@@ -10,7 +10,7 @@ public class ListaEncadeadaCircular {
 	};
 	
 	public void inserir(int valor){
-		System.out.println("função inserir elemento "+valor);
+		System.out.println("funï¿½ï¿½o inserir elemento "+valor);
 
 		Caixa novo = new Caixa(null, valor); //Criando nova caixa
 		if(primeira==null){
@@ -29,16 +29,19 @@ public class ListaEncadeadaCircular {
 		
 	};
 	public void imprimirLista(){
-		System.out.print("função imprime: ");
+		System.out.println("funÃ§Ã£o imprime: ");
 		Caixa atual = primeira;
-		do{
-			System.out.print(atual.getConteudo()+" ");
-			atual = atual.getProxima();
-		}while(atual!=primeira);
+		if(primeira!=null){
+			do{
+				System.out.print(atual.getConteudo()+" ");
+				atual = atual.getProxima();
+			}while(atual!=primeira);
+		}
 		System.out.println();
 	};
+	
 	public void imprimirListaComRecursao(Caixa atual){
-		System.out.print("função imprime com recursão: ");
+		System.out.print("funÃ§Ã£o imprime com recursÃ£o: ");
 		imprimirComRecursao(atual);
 		System.out.println("");
 	}
@@ -51,7 +54,7 @@ public class ListaEncadeadaCircular {
 		}
 	};
 	public void imprimirListaOrdemReversa(Caixa atual){
-		System.out.print("função imprime recursiva invertida: ");
+		System.out.print("funï¿½ï¿½o imprime recursiva invertida: ");
 		imprimirOrdemReversa(atual);
 		System.out.println("");
 	};
@@ -63,17 +66,17 @@ public class ListaEncadeadaCircular {
 	};
 	public int checkListaVazia(Caixa atual){
 		if(atual==null){
-			System.out.println("função verifica lista vazia: " + 1 + " (vazia)");
+			System.out.println("funï¿½ï¿½o verifica lista vazia: " + 1 + " (vazia)");
 			return 1;
 		}else{
-			System.out.println("função verifica lista vazia: " + 0 + " (não vazia)");
+			System.out.println("funï¿½ï¿½o verifica lista vazia: " + 0 + " (nï¿½o vazia)");
 			return 0;
 		}
 	};
 	public Caixa buscarElemento(int elemento){
-		System.out.print("função buscar elemento: ");
+		System.out.print("funï¿½ï¿½o buscar elemento: ");
 		if(primeira==null){
-			System.out.print("elemento não encontrado!\n");
+			System.out.print("elemento nï¿½o encontrado!\n");
 			return null;
 		}
 		if(primeira.getConteudo()==elemento){
@@ -88,14 +91,14 @@ public class ListaEncadeadaCircular {
 				return primeira;
 			}
 		}
-		System.out.print("elemento não encontrado!\n");
+		System.out.print("elemento nï¿½o encontrado!\n");
 		return null;
 	};
 	public Caixa removerElemento(Caixa atual,int elemento){
-		System.out.print("função remover elemento "+elemento+": ");
+		System.out.print("funï¿½ï¿½o remover elemento "+elemento+": ");
 		Caixa anterior = primeira; 
 		if(atual==null){
-			System.out.print("elemento não encontrado");
+			System.out.print("elemento nï¿½o encontrado");
 			return primeira; 
 		}
 		do{
@@ -128,33 +131,49 @@ public class ListaEncadeadaCircular {
 			}
 		}
 		
-		System.out.print("elemento não encontrado!\n");
+		System.out.print("elemento nï¿½o encontrado!\n");
 		return primeira; 
 		
 	};
 	public Caixa removerElementoComRecursao(Caixa atual, Caixa anterior, int elemento){
-		if(atual==null){ //não encontrou
-			return primeira;
+		//System.out.print("funÃ§Ã£o remover elemento "+elemento+": ");
+		if(atual==null){
+			System.out.print("elemento nÃ£o encontrado");
+			return primeira; 
 		}
+		
 		if(atual.getConteudo()==elemento){
-			if(anterior==null){
-				primeira = atual.getProxima(); //Primeiro Elemento
-			}else{
-				anterior.setProxima(atual.getProxima()); 
-				atual = null;
-				return primeira;
+			anterior.setProxima(atual.getProxima());
+			if(atual==primeira){
+				primeira = atual.getProxima();
 			}
+			atual = null;
+			System.out.print("elemento removido com sucesso!\n");
+			return primeira;
 		}else{
-			removerElementoComRecursao(atual.getProxima(),atual, elemento);
+			if(atual==anterior){
+				System.out.print("elemento nÃ£o encontrado");
+				return primeira; 
+			}else{
+				if(atual==primeira){
+					System.out.print("elemento nÃ£o encontrado");
+					return primeira;  
+				}else{
+					return removerElementoComRecursao(atual.getProxima(), atual, elemento);
+				}
+			}
+			
 		}
-		return primeira;
 		
 	};
-	public void liberarLista(){
-		System.out.println("função libera lista");
-		while(primeira!=null){
-			primeira = primeira.getProxima();
+	public void liberarLista(Caixa atual){
+		Caixa aux = atual;
+		while(atual.getProxima()!=primeira){
+			aux = atual;
+			atual = null;
+			atual = aux.getProxima();
 		}
+		atual = null;
 		primeira =null;
 	}
 
